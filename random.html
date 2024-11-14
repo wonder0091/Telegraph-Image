@@ -147,6 +147,21 @@
             }
         }
 
+        footer {
+            font-size: 12px;
+            width: 100%;
+            background-color: #f1f1f1;
+            color: #333;
+            text-align: center;
+            padding: 5px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            border-top: 1px solid #ddd;
+            display: none;
+        }
+
+
 
     </style>
 </head>
@@ -260,9 +275,13 @@
         </div>
 
     </div>
+
 </div>
 
-
+<footer id="footer">
+    <span>API来自以下等等...&nbsp;&nbsp;<a href="https://blog.jixiaob.cn/?post=93">75个二次元、三次元随机图API接口分享及预览</a> | <a href="https://blog.csdn.net/SectSnow/article/details/115835711">十五个免费随机图片api接口网站[超详细]</a>
+    </span>
+</footer>
 
 <script>
 const imgElement = document.getElementById('randomImage');
@@ -384,6 +403,24 @@ apiGroups.forEach(group => {
     });
 });
 </script>
+
+<script>
+    // 监听滚动事件
+    window.addEventListener('scroll', function() {
+        const footer = document.getElementById('footer');
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+
+        // 当滚动位置接近页面底部时，显示 footer
+        if (scrollPosition >= documentHeight - 50) { // 50px 内接近底部
+            footer.style.display = 'block';
+        } else {
+            footer.style.display = 'none';
+        }
+    });
+</script>
+
+
 
 </body>
 </html>
