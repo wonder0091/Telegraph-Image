@@ -398,7 +398,6 @@ function initialLoad() {
 
 window.onload = initialLoad;
 
-
 apiGroups.forEach(group => {
     group.addEventListener('click', () => loadImgFromGroup(group));
     const links = group.querySelectorAll('a');
@@ -422,22 +421,6 @@ apiGroups.forEach(group => {
         });
     });
 });
-</script>
-
-<script>
-    // 监听滚动事件
-    window.addEventListener('scroll', function() {
-        const footer = document.getElementById('footer');
-        const scrollPosition = window.scrollY + window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-
-        // 当滚动位置接近页面底部时，显示 footer
-        if (scrollPosition >= documentHeight - 20) { // 50px 内接近底部
-            footer.style.display = 'block';
-        } else {
-            footer.style.display = 'none';
-        }
-    });
 </script>
 
 
