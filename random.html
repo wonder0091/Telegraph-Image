@@ -59,7 +59,7 @@
             color: white;
             border: none;
             border-radius: 5px;
-            margin-left: 25px;
+            margin-left: 15px;
             padding: 5px;
             transition: background-color 0.3s;
         }
@@ -70,7 +70,7 @@
             color: white;
             border: none;
             border-radius: 5px;
-            margin-left: 20px;
+            margin-left: 10px;
             padding: 5px;
             transition: background-color 0.3s;
         }
@@ -172,7 +172,7 @@
         <img id="randomImage" src="" alt="随机图">
         <div id="toggle-container">
             <input type="button" id="change"  value="切换加载方式" onclick="toggleImageLoadMode()">
-            <input type="button" id="copyBtn" value="复制当前图片API" onclick="copyApiUrl()">
+            <input type="button" id="copyBtn" value="开启复制API" onclick="copyApiUrl()">
             <br>
             当前：<span type="button" id="tip">页内API加载 (只能保存随机的图)</span>
         </div>
@@ -324,7 +324,7 @@ function loadImg(url) {
         } else {
             imgElement.src = finalUrl + "&" + Date.now(); // 加时间戳防缓存
             imgElement.onerror = handleImageError(finalUrl); // 传递最终 URL
-            copyApiUrl();
+
         }
     } else {
         // 其他 URL 直接加载
@@ -333,7 +333,7 @@ function loadImg(url) {
         } else {
             imgElement.src = url + "?" + Date.now();
             imgElement.onerror = handleImageError(url);
-            copyApiUrl();
+
         }
     }
 }
@@ -356,19 +356,21 @@ function handleImageError(url) {
 }
 
 
+let isCopyEnabled = false;
+
 function copyApiUrl(){
-    const imgsrc = document.getElementsByTagName('img')[0].src;
     const cpbtn = document.getElementById('copyBtn');
-    cpbtn.addEventListener('click', ()=> {
-        const tmp = document.createElement("textarea");
-        tmp.value = imgsrc;
-        document.body.appendChild(tmp);
-        tmp.select();
-        document.execCommand("copy");
-        document.body.removeChild(tmp);
-        console.log('copy successful '+imgsrc);
-    })
     
+    // 改变按钮样式和文本
+    if (!isCopyEnabled) {
+        cpbtn.style.backgroundColor = 'orange';
+        cpbtn.value = "点击列表链接复制"; 
+        isCopyEnabled = true; 
+    }else {
+        cpbtn.style.backgroundColor = '';  
+        cpbtn.value = "点击开启复制API"; 
+        isCopyEnabled = false;  
+    }
 }
 
 
@@ -395,10 +397,21 @@ apiGroups.forEach(group => {
     const links = group.querySelectorAll('a');
     links.forEach(link => {
         link.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent click from triggering group click
-            loadAttempts = 0; // 重置加载尝试次数
+            event.stopPropagation();  // 防止触发group点击
+            loadAttempts = 0;  // 重置加载尝试次数
             loadImg(link.dataset.url);
             document.documentElement.scrollTop = 0; 
+            
+            // 在按钮开启时，自动复制 data-url
+            if (isCopyEnabled) {
+                const dataUrl = link.dataset.url;
+                const tmp = document.createElement("textarea");
+                tmp.value = dataUrl;
+                document.body.appendChild(tmp);
+                tmp.select();
+                document.execCommand("copy");
+                document.body.removeChild(tmp);
+            }
         });
     });
 });
