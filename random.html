@@ -104,6 +104,19 @@
             background-color: #f1f1f1; 
         }
 
+        .api-source {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s;
+            cursor: pointer; 
+        }
+
+        .api-source:hover {
+            background-color: #f1f1f1; 
+        }
+
         h2, h4 {
             margin-top: 0;
             margin-bottom: 10px;
@@ -289,13 +302,13 @@
             <a data-url="https://img.moehu.org/pic.php?id=bqb&cdn=cf">随机表情包</a>
         </div>
 
-        <div class="api-group">
+        <div class="api-source">
             <h4>API搜集来自以下等等...</h4>
-            <a href="https://docs.anosu.top/">jitsu</a>
-            <a href="https://img.r10086.com/">樱道</a>
-            <a href="https://blog.jixiaob.cn/?post=93">赵苦瓜のBlog~</a>
-            <a href="https://blog.csdn.net/SectSnow/article/details/115835711">十五个免费随机图api</a>
-            <a href="https://img.moehu.org/">moehu</a>
+            <a target="_blank" href="https://docs.anosu.top/">jitsu</a>
+            <a target="_blank" href="https://img.r10086.com/">樱道</a>
+            <a target="_blank" href="https://blog.jixiaob.cn/?post=93">赵苦瓜のBlog~</a>
+            <a target="_blank" href="https://blog.csdn.net/SectSnow/article/details/115835711">十五个免费随机图api</a>
+            <a target="_blank" href="https://img.moehu.org/">moehu</a>
         </div>
 
 
@@ -303,7 +316,7 @@
 
 </div>
 
-<script>
+<!-- <script>
 const imgElement = document.getElementById('randomImage');
 const apiGroups = document.querySelectorAll('.api-group');
 const container = document.getElementById("container");
@@ -341,11 +354,12 @@ function loadImg(url) {
 
         if (openInNewTab) {
             window.open(finalUrl, '_blank');
+
         } else {
             imgElement.src = finalUrl + "&" + Date.now(); // 加时间戳防缓存
-            imgElement.onerror = handleImageError(finalUrl); // 传递最终 URL
-
+            imgElement.onerror = handleImageError(finalUrl); // 传递最终 URL 
         }
+
     } else {
         // 其他 URL 直接加载
         if (openInNewTab) {
@@ -353,8 +367,8 @@ function loadImg(url) {
         } else {
             imgElement.src = url + "?" + Date.now();
             imgElement.onerror = handleImageError(url);
-
         }
+ 
     }
 }
 
@@ -419,8 +433,6 @@ apiGroups.forEach(group => {
             event.stopPropagation();  // 防止触发group点击
             loadAttempts = 0;  // 重置加载尝试次数
             loadImg(link.dataset.url);
-            document.documentElement.scrollTop = 0; 
-            
             // 在按钮开启时，自动复制 data-url
             if (isCopyEnabled) {
                 const dataUrl = link.dataset.url;
@@ -434,9 +446,141 @@ apiGroups.forEach(group => {
         });
     });
 });
-</script>
+</script> -->
 
-
+<script>
+    const imgElement = document.getElementById('randomImage');
+    const apiGroups = document.querySelectorAll('.api-group');
+    const container = document.getElementById("container");
+    let loadAttempts = 0;
+    let openInNewTab = false;
+    
+    function toggleImageLoadMode() {
+        openInNewTab = !openInNewTab;
+        const toggleButton = document.querySelector('#toggle-container input');
+        const vl = document.getElementById('tip');
+        if (openInNewTab) {
+            vl.innerText = '新标签加载 (新标签可保存页面图)'; 
+        } else {
+            vl.innerText = '页内API加载 (只能保存随机的图)';
+        }
+    }
+    
+    function loadImg(url) {
+        // 判断是否是需要特殊处理的 API
+        const isSpecialApi = url.startsWith('https://api.r10086.com/');
+        
+        if (isSpecialApi) {
+            // 对需要的 URL 进行部分编码
+            const [baseUrl, queryString] = url.split('?');
+            let finalUrl = baseUrl;
+    
+            if (queryString) {
+                const params = new URLSearchParams(queryString);
+                for (const [key, value] of params) {
+                    // 编码参数值以处理中文字符
+                    params.set(key, encodeURIComponent(value));
+                }
+                finalUrl += '?' + params.toString().replace(/%25/g, '%'); // 修正双重编码
+            }
+    
+            if (openInNewTab) {
+                window.open(finalUrl, '_blank');
+            } else {
+                imgElement.src = finalUrl + "&" + Date.now(); // 加时间戳防缓存
+                imgElement.onerror = handleImageError(finalUrl); // 传递最终 URL 
+            }
+        } else {
+            // 其他 URL 直接加载
+            if (openInNewTab) {
+                window.open(url, '_blank');
+            } else {
+                imgElement.src = url + "?" + Date.now();
+                imgElement.onerror = handleImageError(url);
+            }
+        }
+    }
+    
+    let imageContainer = document.getElementById('image-container');
+    
+    function handleImageError(url) {
+        return function() {
+            console.error(`Image load failed for URL: ${url}`); // 输出失败的URL
+            loadAttempts++;
+            
+            if (loadAttempts < 2) {
+                // 尝试重新加载图片
+                loadImg(url);
+            } else {
+                // 第二次失败后直接在新标签中打开图片
+                window.open(url, '_blank');
+            }
+        };
+    }
+    
+    let isCopyEnabled = false;
+    
+    function copyApiUrl(){
+        const cpbtn = document.getElementById('copyBtn');
+        
+        // 改变按钮样式和文本
+        if (!isCopyEnabled) {
+            cpbtn.style.backgroundColor = 'orange';
+            cpbtn.value = "点击列表链接复制"; 
+            isCopyEnabled = true; 
+        } else {
+            cpbtn.style.backgroundColor = '';  
+            cpbtn.value = "点击开启复制API"; 
+            isCopyEnabled = false;  
+        }
+    }
+    
+    function loadImgFromGroup(group) {
+        const links = group.querySelectorAll('a');
+        const randomLink = links[Math.floor(Math.random() * links.length)];
+        const url = randomLink.dataset.url; // 从 data-url 属性获取 URL
+        loadAttempts = 0; // 重置加载尝试次数
+        loadImg(url);
+    }
+    
+    function initialLoad() {
+        const allLinks = container.querySelectorAll("a");
+        const randomLink = 'https://t.alcy.cc/ycy';
+        loadImg(randomLink);
+    }
+    
+    window.onload = initialLoad;
+    
+    apiGroups.forEach(group => {
+        group.addEventListener('click', () => loadImgFromGroup(group));
+        const links = group.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();  // 阻止默认行为，防止页面跳动
+                event.stopPropagation();  // 防止触发group点击
+                loadAttempts = 0;  // 重置加载尝试次数
+                loadImg(link.dataset.url);
+                
+                // 监听 imgElement 加载成功事件
+                imgElement.onload = function() {
+                    // 图片加载成功，滚动到页面顶部
+                    window.scrollTo(0, 0);
+                };
+    
+                // 在按钮开启时，自动复制 data-url
+                if (isCopyEnabled) {
+                    const dataUrl = link.dataset.url;
+                    const tmp = document.createElement("textarea");
+                    tmp.value = dataUrl;
+                    document.body.appendChild(tmp);
+                    tmp.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(tmp);
+                }
+            });
+        });
+    });
+    </script>
 
 </body>
 </html>
