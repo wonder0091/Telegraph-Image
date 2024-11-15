@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机图片API合集</title>
+    <title>随机图片API</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -173,38 +173,48 @@
             <a data-url="https://moe.jitsu.top/img">正常向</a>
             <a data-url="https://moe.jitsu.top/img/?sort=r18&size=1080p">r18涩图</a>
             <a data-url="https://api.anosu.top/img?sort=pixiv&size=1080p">pixiv</a>
-            <a data-url="https://api.anosu.top/img?sort=jitsu&size=1080p">jitsu</a>
-            <a data-url="https://api.anosu.top/img/?sort=furry&size=1080p">兽耳</a>
-            <a data-url="https://moe.jitsu.top/img/?sort=setu">涩图不漏</a>
         </div>
 
         <div class="api-group" onclick="loadImgFromGroup(this)">
-            <h4>动漫by樱道</h4>
+            <h4>樱道·动漫综合</h4>
             <a data-url="https://api.r10086.com/樱道随机图片api接口.php?图片系列=动漫综合1">动漫综合1</a>
-            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=妖精的尾巴">妖精的尾巴</a>
+            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?图片系列=动漫综合2">动漫综合2</a>
+            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?图片系列=动漫综合3">动漫综合3</a>
+        </div>
+
+        <div class="api-group" onclick="loadImgFromGroup(this)">
+            <h4>樱道1</h4>
+            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=为美好世界献上祝福">素晴</a>
             <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=缘之空">缘之空</a>
             <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=罪恶王冠">罪恶王冠</a>
-            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=海贼王">海贼王</a>
-            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=为美好世界献上祝福">为美好世界献上</a>
+            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=妖精的尾巴">妖精的尾巴</a>
+            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=从零开始的异世界生活">RE:0</a>
+        </div>
+        <div class="api-group" onclick="loadImgFromGroup(this)">
+            <h4>樱道2</h4>
+            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=进击的巨人">进击的巨人</a>
+            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=东京食尸鬼">东京食尸鬼</a>
+            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=Fate">Fate</a>
+            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?自适应图片系列=鬼灭之刃">鬼灭之刃</a>
+            <a data-url="https://api.r10086.com/樱道随机图片api接口.php?图片系列=猫娘1">猫娘系列</a>
         </div>
 
         <div class="api-group" onclick="loadImgFromGroup(this)">
             <h4>jitsu·二游1·跳转r18</h4>
+            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=genshinimpact">原神涩图</a>
+            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=honkai">崩坏三涩图</a>   
             <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=azurlane">碧蓝航线涩图</a>
             <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=bluearchive">碧蓝档案涩图</a>
-            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=genshinimpact">原神涩图</a>
-            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=arknights">明日方舟涩图</a>
-            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=honkai">崩坏三涩图</a>       
+            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=arknights">明日方舟涩图</a>    
         </div>
 
         <div class="api-group" onclick="loadImgFromGroup(this)">
             <h4>jitsu·二游2·跳转r18</h4>
             <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=fate">命运涩图</a>
+            <a data-url="https://image.anosu.top/pixiv/?r18=1&keyword=touhou">东方涩图</a> 
             <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=frontline">少女前线涩图</a>
             <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=princess">公主连接涩图</a>
-            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=idolmaster">偶像大师涩图</a>
-            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=hololive">皮套人涩图</a>
-            <a data-url="https://image.anosu.top/pixiv/?r18=1&keyword=touhou">东方涩图</a>       
+            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=idolmaster">偶像大师涩图</a>     
         </div>
 
 
@@ -223,8 +233,9 @@
         <div class="api-group" onclick="loadImgFromGroup(this)">
             <h4>原神随机图</h4>
             <a data-url="https://api.r10086.com/%E6%A8%B1%E9%81%93%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87api%E6%8E%A5%E5%8F%A3.php?%E8%87%AA%E9%80%82%E5%BA%94%E5%9B%BE%E7%89%87%E7%B3%BB%E5%88%97=%E5%8E%9F%E7%A5%9E">○神启动</a>
-            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=genshinimpact">原p启动-r18</a>
+            <a data-url="https://api.suyanw.cn/api/ys">原神</a>
         </div>
+
 
         <div class="api-group" onclick="loadImgFromGroup(this)">
             <h4>随机东方图</h4>
@@ -246,13 +257,11 @@
         <div class="api-group" onclick="loadImgFromGroup(this)">
             <h4>随机三次元白丝</h4>
             <a data-url="https://api.asxe.vip/whitesilk.php">白丝</a>
-            <a data-url="https://v2.api-m.com/api/baisi?return=302">白丝302</a>
         </div>
 
         <div class="api-group" onclick="loadImgFromGroup(this)">
             <h4>随机三次元黑丝</h4>
             <a data-url="https://api.suyanw.cn/api/hs/">黑丝</a>
-            <a data-url="https://api.sdbj.top/api/heisi?apiKey=a849bdb8b4a9829bcf3f875f7ac6785e">黑丝-需key</a>
         </div>
 
         <div class="api-group" onclick="loadImgFromGroup(this)">
@@ -266,10 +275,27 @@
             <a data-url="https://www.loliapi.com/acg/pp/">头像</a>
         </div>
 
+
+        <div class="api-group" onclick="loadImgFromGroup(this)">
+            <h4>302跳转</h4>
+            <a data-url="https://api.anosu.top/img/?sort=furry&size=1080p">兽耳</a>
+            <a data-url="https://image.anosu.top/pixiv/direct?r18=1&keyword=hololive">皮套人涩图</a> 
+            <a data-url="https://moe.jitsu.top/img/?sort=setu">涩图不漏</a>
+            <a data-url="https://api.tomys.top/api/acgimg">tomys</a>
+            <a data-url="https://cdn.seovx.com/?mom=302">三次元</a>
+            <a data-url="https://v2.api-m.com/api/baisi?return=302">白丝</a>
+            <a data-url="https://api.sdbj.top/api/heisi?apiKey=a849bdb8b4a9829bcf3f875f7ac6785e">黑丝-需key</a>
+            <a data-url="https://img.moehu.org/txt/?id=dm">动漫台词</a>
+            <a data-url="https://img.moehu.org/pic.php?id=bqb&cdn=cf">随机表情包</a>
+        </div>
+
         <div class="api-group">
-            <h4>API来自以下等等...</h4>
-            <a href="https://blog.jixiaob.cn/?post=93">75个二次元、三次元随机图API接口分享及预览</a>
-            <a href="https://blog.csdn.net/SectSnow/article/details/115835711">十五个免费随机图片api接口网站[超详细]</a>
+            <h4>API搜集来自以下等等...</h4>
+            <a href="https://docs.anosu.top/">jitsu</a>
+            <a href="https://img.r10086.com/">樱道</a>
+            <a href="https://blog.jixiaob.cn/?post=93">赵苦瓜のBlog~</a>
+            <a href="https://blog.csdn.net/SectSnow/article/details/115835711">十五个免费随机图api</a>
+            <a href="https://img.moehu.org/">moehu</a>
         </div>
 
 
