@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机图片API</title>
+    <title>随机图</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -173,9 +173,9 @@
         <img id="randomImage" src="" alt="随机图">
         <div id="toggle-container">
             <input type="button" id="change"  value="切换加载方式" onclick="toggleImageLoadMode()">
-            <input type="button" id="copyBtn" value="开启复制API" onclick="copyApiUrl()">
+            <input type="button" id="copyBtn" value="是否复制API" onclick="copyApiUrl()">
             <br>
-            当前：<span type="button" id="tip">页内API加载 (只能保存随机的图)</span>
+            当前：<span type="button" id="tip">页内图片加载 (只能保存随机的图)</span>
         </div>
     </div>
 
@@ -332,7 +332,7 @@
         if (openInNewTab) {
             vl.innerText = '新标签加载 (新标签可保存页面图)'; 
         } else {
-            vl.innerText = '页内API加载 (只能保存随机的图)';
+            vl.innerText = '页内图片加载 (只能保存随机的图)';
         }
     }
     
@@ -400,7 +400,7 @@
             isCopyEnabled = true; 
         } else {
             cpbtn.style.backgroundColor = '';  
-            cpbtn.value = "点击开启复制API"; 
+            cpbtn.value = "是否复制API"; 
             isCopyEnabled = false;  
         }
     }
